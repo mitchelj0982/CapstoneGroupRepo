@@ -5,7 +5,10 @@
 package com.mycompany.build_page;
 
 import javax.swing.JOptionPane;
-
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Brandon
@@ -30,8 +33,8 @@ public class build_page_frame extends javax.swing.JFrame {
 
         cpu_comboBox = new javax.swing.JComboBox<>();
         motherboard_comboBox = new javax.swing.JComboBox<>();
-        ram_combBox = new javax.swing.JComboBox<>();
-        stroage_comboBox = new javax.swing.JComboBox<>();
+        ram_comboBox = new javax.swing.JComboBox<>();
+        storage_comboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         createBuild_Button = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -42,13 +45,13 @@ public class build_page_frame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cpu_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Intel Processor", "Asus Processor", "Nvidia Processor", " ", " " }));
+        cpu_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Intel Processor", "AMD Processor", " " }));
 
-        motherboard_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asus Motherboard", "Intel Motherboard", "Nvidia Motherboard", " " }));
+        motherboard_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asus Motherboard", "MSI Motherboard", "Aorus Motherboard", " " }));
 
-        ram_combBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "32gb ddr3", "16gb ddr3", "8gb ddr3" }));
+        ram_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "16 GB 1x16", "8 GB 2x4", "4 GB 2x2" }));
 
-        stroage_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "256gb SSD", "512gb SSD", "1024gb SSD" }));
+        storage_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1TB WD BLUE HDD", "1TB SEAGATE SSD", "1TB WD BLUE M.2 NVME" }));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Build Page");
@@ -75,30 +78,32 @@ public class build_page_frame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel7)
-                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(motherboard_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(9, 9, 9)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cpu_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(stroage_comboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ram_combBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createBuild_Button))
-                        .addGap(37, 37, 37)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))))
-                .addContainerGap(111, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addComponent(jLabel2)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(motherboard_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cpu_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ram_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(storage_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(createBuild_Button)))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,31 +117,36 @@ public class build_page_frame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cpu_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ram_combBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel7)))
+                    .addComponent(cpu_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stroage_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ram_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(storage_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(42, 42, 42)
+                .addGap(36, 36, 36)
                 .addComponent(createBuild_Button)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBuild_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBuild_ButtonActionPerformed
+        String cpu_choice;
+        String motherboard_choice;
+        String ram_choice;
+        String storage_choice;
+        motherboard_choice = String.valueOf(motherboard_comboBox.getSelectedItem());
+        cpu_choice = String.valueOf(cpu_comboBox.getSelectedItem());
+        ram_choice = String.valueOf(ram_comboBox.getSelectedItem());
+        storage_choice = String.valueOf(storage_comboBox.getSelectedItem());
         dispose();
         JOptionPane.showMessageDialog(null, "Your build has been saved.");
+        System.out.println(cpu_choice);
     }//GEN-LAST:event_createBuild_ButtonActionPerformed
 
     /**
@@ -184,7 +194,7 @@ public class build_page_frame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JComboBox<String> motherboard_comboBox;
-    private javax.swing.JComboBox<String> ram_combBox;
-    private javax.swing.JComboBox<String> stroage_comboBox;
+    private javax.swing.JComboBox<String> ram_comboBox;
+    private javax.swing.JComboBox<String> storage_comboBox;
     // End of variables declaration//GEN-END:variables
 }
