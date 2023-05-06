@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 /**
  *
  * @author Brandon
@@ -146,10 +147,13 @@ public class build_page_frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBuild_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBuild_ButtonActionPerformed
+        Random rand = new Random();
         String cpu_choice;
         String motherboard_choice;
         String ram_choice;
         String storage_choice;
+        String buildID;
+        buildID =  String.format("%04d", rand.nextInt(10000));
         motherboard_choice = "'" + String.valueOf(motherboard_comboBox.getSelectedItem()+ "'" );
         cpu_choice = "'" +String.valueOf(cpu_comboBox.getSelectedItem()+ "'");
         ram_choice = "'" +String.valueOf(ram_comboBox.getSelectedItem()+ "'");
@@ -162,7 +166,7 @@ public class build_page_frame extends javax.swing.JFrame {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-            statement.executeUpdate("insert into BUILDS values(1000,"+ cpu_choice+"," + ram_choice +", " + storage_choice+", " + motherboard_choice + ")" );
+            statement.executeUpdate("insert into BUILDS values("+buildID+","+ cpu_choice+"," + ram_choice +", " + storage_choice+", " + motherboard_choice + ")" );
             
             ResultSet rs = statement.executeQuery("select * from BUILDS");
             while(rs.next())
