@@ -137,15 +137,15 @@ public class login_page_frame extends javax.swing.JFrame {
             ResultSet rs = statement.executeQuery(sql);
             
             if(rs.next()){
-   
-                JOptionPane.showMessageDialog(null, "Username or Password is incorrect");
-                username_TF.setText("");
-                password_TF.setText("");
-            }
-            else{
                 dispose();
                 page_call my_obj = new page_call();
                 my_obj.build();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Username or Password is incorrect");
+                username_TF.setText("");
+                password_TF.setText("");
+                
             }
         }
         catch(SQLException e)
