@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 /**
  *
  * @author Brandon
@@ -106,10 +107,12 @@ public class reg_page_frame extends javax.swing.JFrame {
 
     private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
         // TODO add your handling code here
+        Random rand = new Random();
         // first get the username and password
+        String userID;
         String userName = "'" + createUsername_TF.getText() + "'";
         String passWord = "'" + createPassword_TF.getText() + "'";
-
+        userID =  String.format("%04d", rand.nextInt(10000));
         // Login Validation
 
         System.out.println(userName);
@@ -127,7 +130,7 @@ public class reg_page_frame extends javax.swing.JFrame {
                 createPassword_TF.setText("");
             }
             else{
-                statement.executeUpdate("insert into USERS(username, password) values("+ userName+"," + passWord +")");
+                statement.executeUpdate("insert into USERS(userId, username, password) values("+userID +","+ userName+"," + passWord +")");
                 dispose();
                 page_call my_obj = new page_call();
                 my_obj.build();

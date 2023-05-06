@@ -15,9 +15,9 @@ package sample;
     {
       public static void main(String[] args) 
       {
-        //new login_page_frame().setVisible(true);
+        new login_page_frame().setVisible(true);
         //new reg_page_frame().setVisible(true);
-        new build_page_frame().setVisible(true);
+        //new build_page_frame().setVisible(true);
         
       }
     }
