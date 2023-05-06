@@ -36,6 +36,7 @@ public class reg_page_frame extends javax.swing.JFrame {
         createPassword_TF = new javax.swing.JPasswordField();
         login_button = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +44,7 @@ public class reg_page_frame extends javax.swing.JFrame {
         jLabel2.setText("Create Password");
 
         login_button.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        login_button.setText("LOGIN");
+        login_button.setText("Create Account");
         login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_buttonActionPerformed(evt);
@@ -52,6 +53,14 @@ public class reg_page_frame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Create Username");
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Back to Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,8 +78,10 @@ public class reg_page_frame extends javax.swing.JFrame {
                 .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(135, 135, 135))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +96,9 @@ public class reg_page_frame extends javax.swing.JFrame {
                     .addComponent(createPassword_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(login_button)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -98,18 +111,7 @@ public class reg_page_frame extends javax.swing.JFrame {
         String passWord = "'" + createPassword_TF.getText() + "'";
 
         // Login Validation
-        if(userName.equals("") && passWord.equals("")){
-            JOptionPane.showMessageDialog(this, "Please Enter userName and Password");
 
-        }
-        else if (!(userName.equals("")) && passWord.equals("")){
-            JOptionPane.showMessageDialog(this, "Please Enter Password");
-        }
-
-        else if(userName.equals("") && !(passWord.equals(""))){
-            JOptionPane.showMessageDialog(this, "Please enter"
-                + "username and password");
-        }
         System.out.println(userName);
         System.out.println(passWord);
         Connection connection = null;
@@ -119,9 +121,17 @@ public class reg_page_frame extends javax.swing.JFrame {
             connection = DriverManager.getConnection("jdbc:sqlite:partpicker_v2.db");
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-            statement.executeUpdate("insert into USERS(username, password) values("+ userName+"," + passWord +")");
-            
+            if (userName.equals("''") || passWord.equals("''")){
+                JOptionPane.showMessageDialog(null, "Please enter vaild username and password");
+                createUsername_TF.setText("");
+                createPassword_TF.setText("");
+            }
+            else{
+                statement.executeUpdate("insert into USERS(username, password) values("+ userName+"," + passWord +")");
+                dispose();
+                page_call my_obj = new page_call();
+                my_obj.build();
+            }
             ResultSet rs = statement.executeQuery("select * from USERS");
             while(rs.next())
             {
@@ -149,10 +159,14 @@ public class reg_page_frame extends javax.swing.JFrame {
                 System.err.println(e);
             }
         }
+        
+    }//GEN-LAST:event_login_buttonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
         page_call my_obj = new page_call();
-        my_obj.build();
-    }//GEN-LAST:event_login_buttonActionPerformed
+        my_obj.login();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +207,7 @@ public class reg_page_frame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField createPassword_TF;
     private javax.swing.JTextField createUsername_TF;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton login_button;

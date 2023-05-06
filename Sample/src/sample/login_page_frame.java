@@ -37,6 +37,7 @@ public class login_page_frame extends javax.swing.JFrame {
         username_TF = new javax.swing.JTextField();
         password_TF = new javax.swing.JPasswordField();
         reg_button = new javax.swing.JButton();
+        quit_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,14 @@ public class login_page_frame extends javax.swing.JFrame {
             }
         });
 
+        quit_button.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        quit_button.setText("Quit");
+        quit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quit_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,10 +87,12 @@ public class login_page_frame extends javax.swing.JFrame {
                             .addComponent(username_TF, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                             .addComponent(password_TF))
                         .addGap(47, 47, 47))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addComponent(reg_button)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(quit_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reg_button, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
@@ -99,7 +110,9 @@ public class login_page_frame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(login_button)
                     .addComponent(reg_button, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(quit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,6 +189,10 @@ public class login_page_frame extends javax.swing.JFrame {
         my_obj.reg();
     }//GEN-LAST:event_reg_buttonActionPerformed
 
+    private void quit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quit_buttonActionPerformed
+        dispose();
+    }//GEN-LAST:event_quit_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,6 +233,7 @@ public class login_page_frame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton login_button;
     private javax.swing.JPasswordField password_TF;
+    private javax.swing.JButton quit_button;
     private javax.swing.JButton reg_button;
     private javax.swing.JTextField username_TF;
     // End of variables declaration//GEN-END:variables
