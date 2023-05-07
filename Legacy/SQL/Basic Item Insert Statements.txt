@@ -1,0 +1,36 @@
+INSERT INTO product (productID, productName) VALUES ("0001", "Asus Motherboard");
+INSERT INTO product (productID, productName) VALUES ("0002", "MSI Motherboard");
+INSERT INTO product (productID, productName) VALUES ("0003", "Aorus Motherboard");
+
+INSERT INTO product (productID, productName) VALUES ("1001", "Intel Processor");
+INSERT INTO product (productID, productName) VALUES ("1002", "AMD Processor");
+
+
+INSERT INTO product (productID, productName) VALUES ("2001", "16 GB 1x16");
+INSERT INTO product (productID, productName) VALUES ("2002", "8 GB 2x4");
+INSERT INTO product (productID, productName) VALUES ("2003", "4 GB 2x2");
+
+INSERT INTO product (productID, productName) VALUES ("3001", "1TB WD BLUE HDD");
+INSERT INTO product (productID, productName) VALUES ("3002", "1TB SEAGATE SSD");
+INSERT INTO product (productID, productName) VALUES ("3003", "1TB WD BLUE M.2 NVME");
+
+
+
+
+
+
+
+INSERT INTO cpu (productID, cpuType) VALUES ("1001", "LGA");
+INSERT INTO cpu (productID, cpuType) VALUES ("1002", "PGA");
+
+INSERT INTO memory (productID, memoryType) VALUES ("2001", "DDR4");
+INSERT INTO memory (productID, memoryType) VALUES ("2002", "DDR4");
+INSERT INTO memory (productID, memoryType) VALUES ("2003", "DDR3");
+
+INSERT INTO storage (productID, storageType) VALUES ("3001", "HDD");
+INSERT INTO storage (productID, storageType) VALUES ("3002", "SSD");
+INSERT INTO storage (productID, storageType) VALUES ("3003", "M.2 NVME");
+
+INSERT INTO motherboard (productID, boardType) VALUES ("0001", "AMD");
+INSERT INTO motherboard (productID, boardType) VALUES ("0002", "Intel");
+INSERT INTO motherboard (productID, boardType) VALUES ("0003", "AMD");
